@@ -46,6 +46,30 @@ class ModelTrainer:
                 "CatBoosting Regressor": CatBoostRegressor(verbose=False),
                 "AdaBoost Regressor": AdaBoostRegressor(),
             }
+            
+            """
+            Here Before the implementation of the evaluate_models function we can perform the Hyperparameter tuning,
+            and that is by define the params = {} dict and every key in this dict will be the name of the machine learning algo,
+            and the value of this key(Random_first: {}) will be also dict and inside of it the memberes of the hyperparametes for this algo.
+            lastly in the implementation of the evaluate function we perform the GridSearch() from Sklearn lib on this param dict. 
+
+            example:
+             params={
+                "Decision Tree": {
+                    'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                    # 'splitter':['best','random'],
+                    # 'max_features':['sqrt','log2'],
+                },
+                "Random Forest":{
+                    # 'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+                 
+                    # 'max_features':['sqrt','log2',None],
+                    'n_estimators': [8,16,32,64,128,256]
+                },
+                }
+
+            """
+
 
             model_report: dict = evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models)
 
